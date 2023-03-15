@@ -42,7 +42,7 @@ p.press('enter')
 p.sleep(1)
 p.typewrite('Oi!! Eu sou um Bot!')
 p.sleep(1)
-p.getActiveWindow().close()
+p.getActiveWindow().close() # noqa # type: ignore
 p.sleep(1)
 p.press('right')
 p.sleep(0.5)
