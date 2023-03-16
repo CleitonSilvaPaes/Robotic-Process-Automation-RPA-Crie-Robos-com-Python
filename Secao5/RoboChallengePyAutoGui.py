@@ -31,11 +31,6 @@ def download_challenge():
     p.sleep(1)
     p.press('enter')
     p.sleep(1)
-    # Start
-    x, y = 150, 649
-    p.scroll(-50)
-    p.sleep(1)
-    p.click(x, y)
 
 
 url = 'https://rpachallenge.com'
@@ -49,13 +44,27 @@ download_challenge()
 df = pd.read_excel('challenge.xlsx')
 df['Phone Number'] = df['Phone Number'].astype(str)
 
+# Start
+
+p.scroll(-50)
+start = p.locateCenterOnScreen(nomes[8], confidence=.85)  # type:ignore
+p.click(start.x, start.y)
+
 for i in range(len(df.axes[0])):
-    p.scroll(-70)
+    p.press('pagedown')
     for j in range(len(df.axes[1])):
         nome = df.axes[1][j]
-        img = p.locateCenterOnScreen(nomes[j], confidence=.8)  # type:ignore
+        rodar = True
+        img = None
+        while rodar:
+            try:
+                img = p.locateCenterOnScreen(nomes[j], grayscale=True, confidence=.85, )  # type:ignore # noqa
+                if img is not None:
+                    rodar = False
+            except Exception:
+                pass
         print(nome)
         p.click(img)
         p.write(df[nome][i])
-    img = p.locateCenterOnScreen(nomes[7], confidence=.8)  # type:ignore
+    img = p.locateCenterOnScreen(nomes[7], confidence=.85)  # type:ignore
     p.click(img.x, img.y)
