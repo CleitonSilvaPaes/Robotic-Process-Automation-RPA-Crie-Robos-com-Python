@@ -17,20 +17,20 @@ def abrir_chrome(url):
 
 
 def download_challenge():
-    x, y = 133, 657
-    p.click(x, y)
-    x, y = 610, 53
-    p.sleep(1)
-    p.click(x, y)
-    x, y = 301, 219
-    p.doubleClick(x, y)
-    p.press('right')
-    p.sleep(1)
-    p.press('enter')
-    p.press('left')
-    p.sleep(1)
-    p.press('enter')
-    p.sleep(1)
+    local = os.path.dirname(os.path.realpath(__file__))
+    arqs = os.scandir(local)
+    arqs = [i.name for i in arqs]
+    if 'challenge.xlsx' in arqs:
+        pass
+    else:
+        x, y = 133, 657
+        p.click(x, y)
+        x, y = 610, 53
+        p.sleep(1)
+        p.click(x, y)
+        x, y = 242, 250
+        p.doubleClick(x, y)
+        p.press('enter')
 
 
 url = 'https://rpachallenge.com'
